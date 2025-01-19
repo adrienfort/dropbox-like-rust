@@ -1,0 +1,33 @@
+services:
+  api:
+    container_name: dropbox-like-rust-api
+    build: .
+    environment:
+      - API_PORT=${API_PORT}
+      - API_HOST=${API_HOST}
+      - DATABASE_URL=postgres://${DB_USER}:${DB_PASSWORD}@database:${DB_PORT}/${DB_NAME}
+    ports:
+      - ${API_PORT}:${API_PORT}
+    depends_on:
+      database:
+        condition: service_healthy
+
+  database:
+    container_name: dropbox-like-rust-db
+    image: postgres:17-alpine
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_NAME}
+    ports:
+      - 5432:${DB_PORT}
+    volumes:
+      - database_volume:/var/lib/postgresql/data/
+    healthcheck:
+      test: "pg_isready -d $DB_NAME -U $DB_USER"
+      interval: 3s
+      timeout: 3s
+      retries: 3
+
+volumes:
+  database_volume:

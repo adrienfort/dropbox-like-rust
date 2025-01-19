@@ -1,0 +1,34 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "DELETE FROM folders\nWHERE\n    id = $1 RETURNING *;",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "id",
+        "type_info": "Uuid"
+      },
+      {
+        "ordinal": 1,
+        "name": "name",
+        "type_info": "Varchar"
+      },
+      {
+        "ordinal": 2,
+        "name": "parent_id",
+        "type_info": "Uuid"
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Uuid"
+      ]
+    },
+    "nullable": [
+      false,
+      false,
+      true
+    ]
+  },
+  "hash": "d434929907036d89cf79f3fabf38a7b2391d5718ddcc5e7c228639ff46ac505e"
+}
