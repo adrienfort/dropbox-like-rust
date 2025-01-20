@@ -44,7 +44,7 @@ pub struct PostFolderBody {
 
 #[derive(Deserialize)]
 pub struct PatchFolderBody {
-    name: Option<String>,
+    name: String,
 }
 
 pub async fn get_folder(
@@ -139,6 +139,8 @@ pub async fn delete_folder(
     Ok((StatusCode::OK, Json(folder)))
 }
 
+// Why using a struct OptionFolder ?
+// Because a recursive query to the database returns records with optional properties ...
 fn unwrap_option_folder(option_folder: &OptionFolder) -> Result<Folder, (StatusCode, String)> {
     let id = match option_folder.id {
         Some(value) => value,
