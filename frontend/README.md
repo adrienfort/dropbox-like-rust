@@ -1,0 +1,3 @@
+- problem: toogle doesn't work
+- improve error messages
+- validate env types

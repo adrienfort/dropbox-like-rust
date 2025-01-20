@@ -1,13 +1,32 @@
 services:
+  frontend:
+    container_name: dropbox-like-rust-web
+    build: frontend
+    environment:
+      - VITE_HOST=${VITE_HOST}
+      - VITE_PORT=${VITE_PORT}
+      - VITE_BACKEND_URL=http://${API_HOST}:${API_PORT}
+    ports:
+      - ${VITE_PORT}:80 # See Dockerfile
+    depends_on:
+      - api
+      # api:
+      #   condition: service_healthy
+
   api:
     container_name: dropbox-like-rust-api
-    build: .
+    build: backend
     environment:
       - API_PORT=${API_PORT}
       - API_HOST=${API_HOST}
       - DATABASE_URL=postgres://${DB_USER}:${DB_PASSWORD}@database:${DB_PORT}/${DB_NAME}
     ports:
       - ${API_PORT}:${API_PORT}
+    # healthcheck:
+    #   test: "curl -f http://localhost:${API_PORT}/health"
+    #   interval: 3s
+    #   timeout: 5s
+    #   retries: 5
     depends_on:
       database:
         condition: service_healthy
@@ -20,14 +39,14 @@ services:
       - POSTGRES_PASSWORD=${DB_PASSWORD}
       - POSTGRES_DB=${DB_NAME}
     ports:
-      - 5432:${DB_PORT}
+      - ${DB_PORT}:5432
     volumes:
       - database_volume:/var/lib/postgresql/data/
     healthcheck:
       test: "pg_isready -d $DB_NAME -U $DB_USER"
       interval: 3s
-      timeout: 3s
-      retries: 3
+      timeout: 5s
+      retries: 5
 
 volumes:
   database_volume:

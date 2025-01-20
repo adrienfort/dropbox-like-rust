@@ -16,6 +16,7 @@ FROM debian:latest AS app
 WORKDIR /app
 
 RUN rm -rf /var/lib/apt/lists/*
+# RUN apt-get update && apt-get install -y curl
 
 COPY --from=builder /app/migrations migrations
 COPY --from=builder /app/target/release/dropbox-like-rust dropbox-like-rust
