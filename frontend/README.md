@@ -35,6 +35,6 @@ React TS is used, with the build tool Vite and Tailwindcss.
 
 ### What can be improve
 
-- There is a very strange problem I couldn't resolve, which is the toogle of folders (to show or hide the content of a folder)
+- Problem with the toogle of folders (to show or hide the content of a folder). Very strange and needs further investigation. It works if the data is hard-coded, not if the data is fetched using the API (but if we hard code the data from the API, it works).
 - Error messages should be improved, yet there are too generic and not user friendly.
-- The environment variables are checked (their presence) (see [here](./src/config/env.ts)) but not their type. This should be checked.
+- Problem to get the environment veriables, `VITE_BACKEND_URL` cannot be found (but `VITE_PORT` can be found for instance, see [here](./vite.config.ts)). That's very strange and needs further investigation. For now, the value is hard-coded, see [here](./src/config/env.ts).
