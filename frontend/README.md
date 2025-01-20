@@ -33,7 +33,7 @@ React TS is used, with the build tool Vite and Tailwindcss.
 
 ## Notes
 
-### What can be improve
+### What can be improved
 
 - Problem with the toogle of folders (to show or hide the content of a folder). Very strange and needs further investigation. It works if the data is hard-coded, not if the data is fetched using the API (but if we hard code the data from the API, it works).
 - Error messages should be improved, yet there are too generic and not user friendly.

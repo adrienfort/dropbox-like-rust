@@ -36,9 +36,9 @@ cargo run
 
 > Create a folder under a given parent folder.
 
-**Endpoint**: POST http://localhost:8080/folders
+_Endpoint_: POST http://localhost:8080/folders
 
-**Body**:
+_Body_:
 
 ```json
 {
@@ -48,7 +48,7 @@ cargo run
 ```
 > if you want to create a folder a the root, don't specify `parent_id` and just keep the `name`
 
-**Response**:
+_Response_:
 
 201: Created - Folder created
 ```json
@@ -74,9 +74,9 @@ error message
 
 > Rename a folder with the specified ID.
 
-**Endpoint**: PATCH http://localhost:8080/folders/{id}
+_Endpoint_: PATCH http://localhost:8080/folders/{id}
 
-**Body**:
+_Body_:
 
 ```json
 {
@@ -84,7 +84,7 @@ error message
 }
 ```
 
-**Response**:
+_Response_:
 
 200: OK - Folder renamed
 ```json
@@ -114,9 +114,9 @@ error message
 
 > Delete a folder and all its sub-folders.
 
-**Endpoint**: DELETE http://localhost:8080/folders/{id}
+_Endpoint_: DELETE http://localhost:8080/folders/{id}
 
-**Response**:
+_Response_:
 
 200: OK - Folder deleted
 ```json
@@ -141,13 +141,13 @@ error message
 
 > Get a folder structure starting from the given ID, including all sub-folders.
 
-**Endpoint**:
+_Endpoint_:
 - GET http://localhost:8080/folders
 > To get the root folder structure
 - GET http://localhost:8080/folders?id={id}
 > To get the folder structure of with a given ID
 
-**Response**:
+_Response_:
 
 200: OK - Folder found
 ```json
@@ -237,7 +237,7 @@ Rust with axum and sqlx. sqlx is chosen to develop faster, but with a more compl
 
 ## Notes
 
-### What can be improve
+### What can be improved
 
 1. In the request `POST /folders`, the API returns `500: Internal Server Error` if the `parent_id` follows the right format but doesn't exists. It should be `404 - Not found`.
 2. In the database, the `name` property of a `folder` has a constraint: `VARCHAR(50)`. When a folder is created / renamed with a too long name, the API should return an appropriate error. 

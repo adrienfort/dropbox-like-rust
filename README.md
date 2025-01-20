@@ -39,4 +39,4 @@ This dropbox-like project is divided in three components:
 
 - I would have used Heroku to get the API and the database on production, and Netlify to get the web application on production
 - I would have written a precise documentation about how to implement the authentication and authorization
-- I would have worked on the "What can be improve" sections, see [frontend improvements](./frontend/README.md) and [backend improvements](./backend/README.md)
+- I would have worked on the "What can be improved" sections, see [frontend improvements](./frontend/README.md) and [backend improvements](./backend/README.md)
